@@ -3,12 +3,16 @@
 class VendingMachine
   attr_reader :money
 
-  def initialize(money = 0)
+  def initialize(money: 0)
     @money = money
   end
 
   def push
-    'cola'
+    if @money == 100
+      'cola'
+    else
+      nil
+    end
   end
 
   def insert(money)

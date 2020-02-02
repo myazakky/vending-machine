@@ -7,8 +7,18 @@ RSpec.describe VendingMachine do
   let(:vending_machine) { VendingMachine.new }
 
   context 'push button' do
-    it 'return cola' do
-      expect(vending_machine.push).to eq 'cola'
+    it 'return nil' do
+      expect(vending_machine.push).to be_nil
+    end
+
+    it 'return cola if inserted 100' do
+      inserted_vending_machine = vending_machine.insert(100)
+      expect(inserted_vending_machine.push).to eq 'cola'
+    end
+
+    it 'return nil if inserted outside of 100' do
+      inserted_vending_machine = vending_machine.insert(200)
+      expect(inserted_vending_machine.push).to be_nil
     end
   end
 
