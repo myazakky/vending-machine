@@ -15,4 +15,18 @@ RSpec.describe Bevarage do
       expect(bevarage.able_to_buy?(199)).to be false
     end
   end
+
+  context 'compare Bevarage objects' do
+    b1 = Bevarage.new('cola', 100)
+
+    it 'true if name of each the objects is not different' do
+      b2 = Bevarage.new('cola', 200)
+      expect(b1 == b2).to be true
+    end
+
+    it 'false if name of each the objects is different' do
+      b2 = Bevarage.new('orange', 100)
+      expect(b1 == b2).to be false
+    end
+  end
 end
