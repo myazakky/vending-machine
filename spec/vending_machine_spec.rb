@@ -14,4 +14,30 @@ RSpec.describe VendingMachine do
       expect(v.push(200, 'cola')).to be_nil
     end
   end
+
+  context 'add_beverages' do
+    v = VendingMachine.new
+
+    it 'create VendingMachine object added the beverage' do
+      expect(v.add_beverages(orange: 200)).to eq VendingMachine.new(
+        beverages: { orange: 200 }
+      )
+    end
+  end
+
+  context 'compare' do
+    it 'is same each beverages' do
+      v1 = VendingMachine.new(beverages: { cola: 100, orange: 100 })
+      v2 = VendingMachine.new(beverages: { orange: 100, cola: 100 })
+
+      expect(v1 == v2).to be true
+    end
+
+    it 'is different each beverages' do
+      v1 = VendingMachine.new(beverages: { cola: 100, orange: 200 })
+      v2 = VendingMachine.new(beverages: { orange: 100, cola: 100 })
+
+      expect(v1 == v2).to be false
+    end
+  end
 end
