@@ -2,9 +2,11 @@
 
 class VendingMachine
   attr_reader :beverages
+  attr_reader :money
 
-  def initialize(beverages: {})
+  def initialize(beverages: {}, money: 0)
     @beverages = beverages
+    @money = money
   end
 
   def push(money, beverage_name)
@@ -17,7 +19,11 @@ class VendingMachine
     )
   end
 
+  def insert(money)
+    VendingMachine.new(beverages: @beverages, money: @money + money)
+  end
+
   def ==(other)
-    @beverages == other.beverages
+    (@beverages == other.beverages) && (@money == other.money)
   end
 end

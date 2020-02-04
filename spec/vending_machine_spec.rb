@@ -39,5 +39,31 @@ RSpec.describe VendingMachine do
 
       expect(v1 == v2).to be false
     end
+
+    it 'is same each money' do
+      v1 = VendingMachine.new(money: 100)
+      v2 = VendingMachine.new(money: 100)
+
+      expect(v1 == v2).to be true
+    end
+
+    it 'is different each money' do
+      v1 = VendingMachine.new(money: 100)
+      v2 = VendingMachine.new(money: 200)
+
+      expect(v1 == v2).to be false
+    end
+  end
+
+  context 'insert' do
+    v = VendingMachine.new
+
+    it 'is inserted 100' do
+      expect(v.insert(100)).to eq VendingMachine.new(money: 100)
+    end
+
+    it 'is not inserted 100' do
+      expect(v.insert(100)).not_to eq VendingMachine.new(money: 200)
+    end
   end
 end
