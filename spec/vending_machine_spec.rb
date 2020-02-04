@@ -66,4 +66,36 @@ RSpec.describe VendingMachine do
       expect(v.insert(100)).not_to eq VendingMachine.new(money: 200)
     end
   end
+
+  context 'beverages_who_can_buy' do
+    v = VendingMachine.new(
+      beverages: {
+        orange: 100,
+        cola: 200,
+        soda: 300
+      }
+    )
+
+    it 'return beverage who can buy list' do
+      expect(v.insert(200).beverages_who_can_buy).to eq %w[orange cola].sort
+    end
+  end
+
+  context 'can_buy?' do
+    v = VendingMachine.new(
+      beverages: {
+        orange: 100,
+        cola: 200,
+        soda: 300
+      }
+    )
+
+    it 'is true' do
+      expect(v.insert(100).can_buy?('orange')).to be true
+    end
+
+    it 'is false' do
+      expect(v.insert(100).can_buy?('cola')).to be false
+    end
+  end
 end

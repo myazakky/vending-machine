@@ -23,6 +23,16 @@ class VendingMachine
     VendingMachine.new(beverages: @beverages, money: @money + money)
   end
 
+  def beverages_who_can_buy
+    @beverages.keys.map(&:to_s).sort.delete_if do |name|
+      !can_buy?(name)
+    end
+  end
+
+  def can_buy?(beverage_name)
+    @beverages[beverage_name.intern] <= @money
+  end
+
   def ==(other)
     (@beverages == other.beverages) && (@money == other.money)
   end
